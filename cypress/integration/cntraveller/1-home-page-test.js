@@ -4,7 +4,7 @@ import HomePage from '../../support/pageobject/home-page';
 
 const _ = Cypress._;
 
-describe.only('Home Page Test', () => {
+describe('Home Page Test', () => {
 
     let articleItems = [];
     let trendingStories = [];
@@ -29,7 +29,6 @@ describe.only('Home Page Test', () => {
 
         });
 
-
         cy.visit('/');
 
     })
@@ -38,14 +37,10 @@ describe.only('Home Page Test', () => {
 
         homePage.getArticles().each(($el, index, $list) => {
 
-            cy.assertCard($el, articleItems.items[index]);
-            // homePage.findHedLink().should("have.attr", "href", articleItems.items[index].url);
+            cy.assertSection($el, articleItems.items[index]);
 
         })
-        // let image = homePage.findImage($el);
-        // // expect(image, articleItems[index].image.sources.xxl.url)
-        // // .to.have.attr("src", articleItems[index].image.sources.xxl.url.replace(',', '%2C'));
-        // expect(image.src).to.be.visible;
+
     })
 
     it('Validate trending stories section', () => {
@@ -56,9 +51,7 @@ describe.only('Home Page Test', () => {
             })
 
         homePage.getTrendingStories().each(($el, index, $list) => {
-
-            cy.assertCard($el, trendingStories.items[index]);
-
+            cy.assertSection($el, trendingStories.items[index]);
         })
     })
 
@@ -70,10 +63,7 @@ describe.only('Home Page Test', () => {
             })
 
         homePage.getInspirations().each(($el, index, $list) => {
-
-            cy.assertCard($el, inspiration.items[index]);
-
-
+            cy.assertSection($el, inspiration.items[index]);
         })
     })
 
@@ -85,10 +75,7 @@ describe.only('Home Page Test', () => {
             })
 
         homePage.getDestinationGuides().each(($el, index, $list) => {
-
-            cy.assertCard($el, destinationGuides.items[index]);
-
-
+            cy.assertSection($el, destinationGuides.items[index]);
         })
     })
 
@@ -100,10 +87,7 @@ describe.only('Home Page Test', () => {
             })
 
         homePage.getTravelNews().each(($el, index, $list) => {
-
-            cy.assertCard($el, travelNews.items[index]);
-
-
+            cy.assertSection($el, travelNews.items[index]);
         })
     })
 
@@ -115,8 +99,23 @@ describe.only('Home Page Test', () => {
             })
 
         homePage.getPackingList().each(($el, index, $list) => {
-            cy.assertCard($el, packingList.items[index]);
+            cy.assertSection($el, packingList.items[index]);
         })
+    })
+
+
+    it('Validate article page navigation', () => {
+
+        articleItems.items.forEach((value, index, array) => {
+            cy.on('uncaught:exception', (err, runnable) => {
+                expect(err.message).to.include("Cannot read property 'split' of undefined")
+                return false
+            })
+            if(index!=1) {
+                cy.clickArticle(index, value);
+            }
+        })
+
     })
 
 });

@@ -1,3 +1,9 @@
+/**
+ * Defines Page Object Model for Article Page in cntraveller website
+ *
+ * @class ArticlePage
+ */
+
 class ArticlePage{
 
     getHeaderHed(){

@@ -1,3 +1,10 @@
+/**
+ * This class defines Page Object model for home page in cntraveller website
+ *
+ * @class HomePage
+ */
+
+
 class HomePage{
 
     // constructor(){}
@@ -26,7 +33,7 @@ class HomePage{
         return cy.get(".summary-item__byline__content .byline__name");
     }
 
-    findImage(){
+    getImage(){
         return cy.get(".summary-item__asset-container .responsive-image__image");
     }
 

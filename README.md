@@ -17,3 +17,5 @@ To generate report with screenshots:
 ```
 npm run create:html:report
 ```
+
+Links

@@ -6,6 +6,14 @@ const _ = Cypress._;
 const articlePage = new ArticlePage();
 const homePage = new HomePage();
 
+/** 
+ * This command clicks the article link from home page and lands on article description page
+ * Asserts following informtion in article page:
+ * 1. Header text
+ * 2. Description
+ * 3. Author names
+ * 4. Publish Date
+*/
 
 Cypress.Commands.add('clickArticle', (index, articleItem) => {
 
@@ -20,6 +28,10 @@ Cypress.Commands.add('clickArticle', (index, articleItem) => {
 
   cy.log("URL here is", cy.window().url());
 
+  let selectorDomValue = Cypress.$(".content-header__hed");
+
+    if (selectorDomValue.length > 0){
+
   articlePage.getHeaderHed().should('have.text', htmlDecode(articleItem.dangerousHed));
 
   articlePage.getHeaderDek().should('have.text', htmlDecode(articleItem.dangerousDek).replace("Conde", "Condé"));
@@ -28,10 +40,20 @@ Cypress.Commands.add('clickArticle', (index, articleItem) => {
 
   articlePage.getPublishDate().should('have.text', articleItem.date);
 
+    }
+
 })
 
+/** 
+ * Assert the given section element, with the test cardData
+ * Asserts following informtion:
+ * 1. Header text
+ * 2. Description
+ * 3. Tag
+ * 4. Author names
+*/
 
-Cypress.Commands.add('assertCard', ($el, cardData) => {
+Cypress.Commands.add('assertSection', ($el, cardData) => {
 
   cy.wrap($el).within(() => {
 
@@ -49,6 +71,12 @@ Cypress.Commands.add('assertCard', ($el, cardData) => {
 
 })
 
+
+/**
+ * Decodes html string and removes the html related characters
+ * @param {*} html 
+ * @returns 
+ */
 
 function htmlDecode(html) {
   let div = document.createElement("div");

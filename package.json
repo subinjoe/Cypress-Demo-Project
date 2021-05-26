@@ -10,8 +10,8 @@
     "postinstall": "npm run install:todomvc",
     "start": "cd todomvc && npm start",
     "delete:reportFolder": "rm -rf mochawesome-report/",
-    "report:copyScreenshots": "cp -r cypress/screenshots TestReport/screenshots",
-    "test:cli": "npm run delete:reportFolder && cypress run --record --key 6bf29a56-9f43-4e60-820f-278c57c58735",
+    "report:copyScreenshots": "mkdir -p TestReport && cp -r cypress/screenshots TestReport/screenshots",
+    "test:cli": "npm run delete:reportFolder && cypress run --record --key b5ad0bad-3f5e-44c8-b53b-a327b4f67d91",
     "merge:reports": "mochawesome-merge mochawesome-report/*.json > cypress-combined-report.json",
     "create:html:report": "npm run report:copyScreenshots && npm run merge:reports && marge --reportDir TestReport cypress-combined-report.json"
   },
