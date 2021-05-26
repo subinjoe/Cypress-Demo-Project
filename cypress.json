@@ -1,0 +1,21 @@
+{
+  "baseUrl": "https://www.cntraveler.com/?us_site=y",
+  "blockHosts": [
+    "*securepubads.g.doubleclick.net",
+    "*stats.g.doubleclick.net",
+    "*vc.hotjar.io",
+    "*ampcid.google.*",
+    "*ct.pinterest.com",
+    "*.amazon-adsystem.com",
+    "*analytics.tiktok.com",
+    "*as-sec.casalemedia.com"
+  ],
+  "chromeWebSecurity": false,
+  "reporter": "../node_modules/mochawesome/src/mochawesome.js",
+  "reporterOptions": {
+      "overwrite": false,
+      "html": false,
+      "json": true
+  },
+  "projectId": "mfq1gn"
+}
