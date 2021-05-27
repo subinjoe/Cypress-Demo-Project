@@ -25,12 +25,12 @@ describe('Home Page Test', () => {
             destinationGuides = _.get(response, 'body.bundle.containers.6', []);
             travelNews = _.get(response, 'body.bundle.containers.7', []);
             packingList = _.get(response, 'body.bundle.containers.8', []);
-            cy.writeFile("./cypress/fixtures/article-items.json", articleItems.items);
 
         });
 
-        cy.visit('/');
-
+        cy
+            .visit('/')
+            .wait(10000);
     })
 
     it('Validate articles section', () => {
@@ -107,13 +107,9 @@ describe('Home Page Test', () => {
     it('Validate article page navigation', () => {
 
         articleItems.items.forEach((value, index, array) => {
-            cy.on('uncaught:exception', (err, runnable) => {
-                expect(err.message).to.include("Cannot read property 'split' of undefined")
-                return false
-            })
-            if(index!=1) {
-                cy.clickArticle(index, value);
-            }
+
+            cy.validateArticleLink(index, value);
+
         })
 
     })
